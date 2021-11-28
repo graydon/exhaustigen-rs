@@ -1,0 +1,10 @@
+[package]
+name = "exhaustigen"
+description = "exhaustive test generator"
+authors = ["Aleksey Kladov <aleksey.kladov@gmail.com>", "Graydon Hoare <graydon@pobox.com>", ]
+license = "MIT OR Apache-2.0"
+keywords = ["test"]
+repository = "https://github.com/graydon/exhaustigen-rs"
+readme = "README.md"
+version = "0.1.0"
+edition = "2018"
