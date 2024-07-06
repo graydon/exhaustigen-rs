@@ -58,9 +58,27 @@ impl Gen {
         self.gen(1) == 1
     }
 
-    /// Selects an element (eventually every element) from `input`.
+    /// Selects an element (eventually every element) from `input` slice.
     pub fn pick<'a, T>(&mut self, input: &'a [T]) -> &'a T {
-        &input[self.gen(input.len() - 1)]
+        self.pick_iter(input.iter())
+    }
+
+    /// Selects an element (eventually every element) from `input` mutable slice.
+    pub fn pick_mut<'a, T>(&mut self, input: &'a mut [T]) -> &'a mut T {
+        self.pick_iter(input.iter_mut())
+    }
+
+    /// Selects an element (eventually every element) from `input` iterator.
+    pub fn pick_iter<'a, T, I>(&mut self, input: I) -> T
+    where
+        I: IntoIterator<Item = T>,
+        I::IntoIter: ExactSizeIterator,
+    {
+        let mut input = input.into_iter();
+        let index = self.gen(input.len() - 1);
+        input
+            .nth(index)
+            .expect("ExactSizeIterator should report correct len")
     }
 
     /// Generates a variable-length iterator (eventually every such iterator)
