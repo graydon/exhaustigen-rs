@@ -99,7 +99,7 @@ impl Gen {
 
     /// Generates a variable-size combination (eventually every combination) of
     /// elements selected from the `input` array provided, up to the size of
-    /// that array. Equivalent to `gen_comb_bound(input, input.len())`.
+    /// that array. Equivalent to `gen_bound_comb(input.len(), input)`.
     pub fn gen_comb<'gen, 'data: 'gen, T>(
         &'gen mut self,
         input: &'data [T],
@@ -110,7 +110,7 @@ impl Gen {
 
     /// Generates a variable-size combination (eventually every combination) of
     /// elements selected from the `input` array provided. Equivalent to
-    /// `gen_comb_fixed(input, self.gen(bound))`.
+    /// `gen_fixed_comb(self.gen(bound), input)`.
     pub fn gen_bound_comb<'gen, 'data: 'gen, T>(
         &'gen mut self,
         bound: usize,
